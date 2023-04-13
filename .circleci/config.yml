@@ -62,7 +62,7 @@ jobs:
         
       # run tests!
       - run: npm run ng build --prod
-      - run: npm run ng test --single-run
+      - run: npm run ng test --watch=false
 
       # - run:
       #     command: |
