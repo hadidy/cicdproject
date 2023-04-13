@@ -29,7 +29,7 @@
 #
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
-version: 2
+version: 2.1
 jobs:
   build:
     docker:
@@ -61,8 +61,8 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
         
       # run tests!
-      - run: npm run ng build --prod
-      - run: npm run ng test --watch=false
+      - run: npm run ng build  --build-optimizer --no-progress
+      - run: npm run ng test --watch=false --no-progress
 
       # - run:
       #     command: |
@@ -74,3 +74,7 @@ jobs:
       #     command: |
       #       docker push sicotin.azurecr.io/hello:1.0
 
+workflows:
+  build-workflow:
+    jobs:
+      - build
